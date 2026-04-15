@@ -6,187 +6,178 @@
     <title>Afghanistan Vibe Coder Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--green:#00A651;--green-dark:#008C44;--green-light:#00C960;--gold:#D4A843;--gold-light:#F0D68A;--dark:#0A0F1C;--dark2:#111827;--dark3:#1F2937;--gray:#6B7280;--gray-light:#9CA3AF;--light:#F9FAFB;--white:#FFF;--red:#EF4444;--blue:#3B82F6}
+        :root{--green:#00A651;--green-dark:#008C44;--gold:#D4A843;--dark:#0A0F1C;--dark2:#111827;--dark3:#1F2937;--gray:#6B7280;--gray-light:#9CA3AF;--white:#FFF;--red:#EF4444;--blue:#3B82F6}
         body{font-family:'Inter',-apple-system,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden}
         .flag-stripe{height:4px;background:linear-gradient(90deg,#000 33.3%,#DD0000 33.3%,#DD0000 66.6%,var(--green) 66.6%)}
 
         /* NAV */
-        nav{position:fixed;top:4px;left:0;right:0;z-index:100;background:rgba(10,15,28,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between}
-        nav .logo{font-size:1.1rem;font-weight:800}.logo span{color:var(--green)}
-        nav .nav-links{display:flex;gap:1.5rem;align-items:center}
-        nav .nav-links a{color:var(--gray-light);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color .2s}
-        nav .nav-links a:hover{color:var(--white)}
-        .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.25rem;border-radius:10px;font-size:0.9rem;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
-        .btn-primary{background:var(--green);color:var(--white);box-shadow:0 0 20px rgba(0,166,81,0.2)}
-        .btn-primary:hover{background:var(--green-dark);transform:translateY(-1px)}
+        nav{position:fixed;top:4px;left:0;right:0;z-index:100;background:rgba(10,15,28,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+        nav .logo{font-size:1rem;font-weight:800}.logo span{color:var(--green)}
+        nav .nav-right{display:flex;gap:0.75rem;align-items:center}
+        .btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.2rem;border-radius:10px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:inherit;-webkit-tap-highlight-color:transparent}
+        .btn-primary{background:var(--green);color:var(--white)}
+        .btn-primary:hover,.btn-primary:active{background:var(--green-dark)}
         .btn-secondary{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.2)}
-        .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
-        .btn-sm{padding:0.5rem 1rem;font-size:0.8rem;border-radius:8px}
-        .btn-danger{background:var(--red);color:var(--white)}
+        .btn-secondary:hover,.btn-secondary:active{border-color:var(--gold);color:var(--gold)}
+        .btn-sm{padding:0.45rem 0.9rem;font-size:0.78rem;border-radius:8px}
         .btn-gold{background:var(--gold);color:var(--dark)}
+        .btn-danger{background:var(--red);color:var(--white)}
 
         /* HERO */
-        .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse at 50% 0%,rgba(0,166,81,0.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(212,168,67,0.1) 0%,transparent 50%),var(--dark)}
-        .hero-content{position:relative;z-index:1;max-width:900px}
-        .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,166,81,0.15);border:1px solid rgba(0,166,81,0.3);border-radius:50px;padding:0.5rem 1.25rem;font-size:0.8rem;font-weight:600;color:var(--green);margin-bottom:2rem}
-        .hero h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:900;line-height:1.05;margin-bottom:1.5rem;letter-spacing:-0.03em}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.5rem 4rem;background:radial-gradient(ellipse at 50% 0%,rgba(0,166,81,0.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(212,168,67,0.1) 0%,transparent 50%),var(--dark)}
+        .hero-content{max-width:900px}
+        .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,166,81,0.15);border:1px solid rgba(0,166,81,0.3);border-radius:50px;padding:0.45rem 1.1rem;font-size:0.75rem;font-weight:600;color:var(--green);margin-bottom:1.5rem}
+        .hero h1{font-size:clamp(2rem,5.5vw,3.8rem);font-weight:900;line-height:1.05;margin-bottom:1.25rem;letter-spacing:-0.03em}
         .hero h1 .green{color:var(--green)}.hero h1 .gold{color:var(--gold)}
-        .hero-sub{font-size:clamp(1rem,2vw,1.25rem);color:var(--gray-light);max-width:650px;margin:0 auto 2rem;line-height:1.6}
+        .hero-sub{font-size:clamp(0.95rem,2vw,1.15rem);color:var(--gray-light);max-width:620px;margin:0 auto 2rem;line-height:1.6}
         .hero-sub strong{color:var(--white)}
-        .hero-stats{display:flex;justify-content:center;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+        .hero-stats{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap}
         .hero-stat{text-align:center}
-        .hero-stat .num{font-size:1.8rem;font-weight:900;color:var(--green)}
-        .hero-stat .label{font-size:0.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.05em}
-        .btn-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .hero-stat .num{font-size:1.6rem;font-weight:900;color:var(--green)}
+        .hero-stat .label{font-size:0.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.05em}
+        .btn-group{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
 
         /* SECTIONS */
-        section{padding:5rem 2rem}
+        section{padding:4rem 1.5rem}
         .container{max-width:1100px;margin:0 auto}
         .section-label{display:inline-block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);margin-bottom:0.75rem}
-        .section-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:1rem;letter-spacing:-0.02em}
-        .section-desc{font-size:1.05rem;color:var(--gray);max-width:600px;line-height:1.6;margin-bottom:2.5rem}
+        .section-title{font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:800;line-height:1.1;margin-bottom:0.75rem;letter-spacing:-0.02em}
+        .section-desc{font-size:1rem;color:var(--gray);max-width:580px;line-height:1.6;margin-bottom:2rem}
 
         /* CARDS */
-        .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-        .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:2rem;transition:all .3s}
-        .card:hover{border-color:rgba(0,166,81,0.3);background:rgba(0,166,81,0.05)}
-        .card-icon{font-size:2.5rem;margin-bottom:1rem}
-        .card h3{font-size:1.15rem;font-weight:700;margin-bottom:0.5rem}
-        .card p{color:var(--gray);font-size:0.9rem;line-height:1.5}
+        .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+        .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:1.75rem;transition:all .3s}
+        .card:hover{border-color:rgba(0,166,81,0.3)}
+        .card-icon{font-size:2.2rem;margin-bottom:0.75rem}
+        .card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.4rem}
+        .card p{color:var(--gray);font-size:0.85rem;line-height:1.5}
 
         /* PHASE */
-        .phase{background:linear-gradient(135deg,rgba(0,166,81,0.08),rgba(0,166,81,0.02));border:1px solid rgba(0,166,81,0.15);border-radius:20px;padding:2rem;position:relative}
-        .phase-num{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:var(--green);color:var(--white);font-weight:900;font-size:1.1rem;margin-bottom:1rem}
-        .phase h3{font-size:1.2rem;font-weight:800;margin-bottom:0.25rem}
-        .phase .duration{font-size:0.8rem;color:var(--gold);font-weight:600;margin-bottom:0.75rem}
+        .phase{background:linear-gradient(135deg,rgba(0,166,81,0.08),rgba(0,166,81,0.02));border:1px solid rgba(0,166,81,0.15);border-radius:16px;padding:1.75rem}
+        .phase-num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:var(--green);color:var(--white);font-weight:900;font-size:1rem;margin-bottom:0.75rem}
+        .phase h3{font-size:1.1rem;font-weight:800;margin-bottom:0.2rem}
+        .phase .duration{font-size:0.78rem;color:var(--gold);font-weight:600;margin-bottom:0.65rem}
         .phase ul{list-style:none;padding:0}
-        .phase ul li{color:#D1D5DB;font-size:0.9rem;padding:0.25rem 0 0.25rem 1.4rem;position:relative}
+        .phase ul li{color:#D1D5DB;font-size:0.85rem;padding:0.2rem 0 0.2rem 1.3rem;position:relative}
         .phase ul li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
 
         /* IMPACT */
         .impact{background:linear-gradient(135deg,rgba(0,166,81,0.12),rgba(212,168,67,0.08));text-align:center}
-        .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-top:2.5rem}
-        .impact-item .number{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--green);line-height:1}
-        .impact-item .unit{font-size:1.3rem;color:var(--gold)}
-        .impact-item .desc{color:#9CA3AF;font-size:0.85rem;margin-top:0.4rem}
+        .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.5rem;margin-top:2rem}
+        .impact-item .number{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--green);line-height:1}
+        .impact-item .unit{font-size:1.2rem;color:var(--gold)}
+        .impact-item .desc{color:#9CA3AF;font-size:0.8rem;margin-top:0.3rem}
 
         /* COST */
         .cost{text-align:center;background:var(--dark2)}
-        .cost-highlight{display:inline-flex;align-items:baseline;gap:0.25rem;background:rgba(0,166,81,0.1);border:2px solid var(--green);border-radius:20px;padding:1.25rem 2.5rem;margin:1.5rem 0}
-        .cost-highlight .dollar{font-size:1.8rem;font-weight:800;color:var(--green)}
-        .cost-highlight .amount{font-size:3.5rem;font-weight:900;color:var(--green);line-height:1}
-        .cost-highlight .per{font-size:1rem;color:#9CA3AF}
-        .cost-compare{color:var(--gray);font-size:1rem;margin-top:0.75rem}.cost-compare strong{color:var(--gold)}
+        .cost-highlight{display:inline-flex;align-items:baseline;gap:0.2rem;background:rgba(0,166,81,0.1);border:2px solid var(--green);border-radius:20px;padding:1rem 2rem;margin:1rem 0}
+        .cost-highlight .dollar{font-size:1.6rem;font-weight:800;color:var(--green)}
+        .cost-highlight .amount{font-size:3rem;font-weight:900;color:var(--green);line-height:1}
+        .cost-highlight .per{font-size:0.9rem;color:#9CA3AF}
+        .cost-compare{color:var(--gray);font-size:0.9rem;margin-top:0.5rem}.cost-compare strong{color:var(--gold)}
 
         /* PARTNER GRID */
-        .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+        .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
         @media(max-width:640px){.partner-grid{grid-template-columns:1fr}}
-        .partner-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:2rem}
-        .partner-box h3{font-size:1.1rem;font-weight:800;margin-bottom:1rem}
+        .partner-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:1.75rem}
+        .partner-box h3{font-size:1rem;font-weight:800;margin-bottom:0.75rem}
         .partner-box.gov h3{color:var(--gold)}.partner-box.vcl h3{color:var(--green)}
         .partner-box ul{list-style:none;padding:0}
-        .partner-box ul li{padding:0.3rem 0 0.3rem 1.5rem;position:relative;color:#D1D5DB;font-size:0.9rem}
+        .partner-box ul li{padding:0.25rem 0 0.25rem 1.4rem;position:relative;color:#D1D5DB;font-size:0.85rem}
         .partner-box.gov ul li::before{content:'🏛';position:absolute;left:0}
         .partner-box.vcl ul li::before{content:'⚡';position:absolute;left:0}
 
         /* WHY */
-        .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
-        .why-card{background:rgba(255,255,255,0.02);border-radius:12px;padding:1.5rem;border-left:4px solid var(--green)}
-        .why-card h4{font-size:1rem;font-weight:700;margin-bottom:0.4rem}
-        .why-card p{color:var(--gray);font-size:0.85rem;line-height:1.5}
+        .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem}
+        .why-card{background:rgba(255,255,255,0.02);border-radius:12px;padding:1.25rem;border-left:4px solid var(--green)}
+        .why-card h4{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem}
+        .why-card p{color:var(--gray);font-size:0.8rem;line-height:1.5}
 
         /* CTA */
-        .cta{background:linear-gradient(135deg,rgba(0,166,81,0.2),rgba(212,168,67,0.1));text-align:center;padding:5rem 2rem}
-        .cta .quote{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;max-width:700px;margin:0 auto 0.75rem;line-height:1.4}
-        .cta .quote-attr{color:var(--gold);font-size:0.95rem;margin-bottom:2rem}
-        .cta .bismillah{color:var(--gold);font-size:1rem;margin-top:1.5rem;font-style:italic}
+        .cta{background:linear-gradient(135deg,rgba(0,166,81,0.2),rgba(212,168,67,0.1));text-align:center;padding:4rem 1.5rem}
+        .cta .quote{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;max-width:650px;margin:0 auto 0.5rem;line-height:1.4}
+        .cta .quote-attr{color:var(--gold);font-size:0.9rem;margin-bottom:1.75rem}
+        .cta .bismillah{color:var(--gold);font-size:0.95rem;margin-top:1.25rem;font-style:italic}
 
-        /* FORMS */
-        .form-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:1rem}
-        .form-overlay.active{display:flex}
-        .form-box{background:var(--dark2);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:2.5rem;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
-        .form-box h2{font-size:1.5rem;font-weight:800;margin-bottom:0.5rem}
-        .form-box .subtitle{color:var(--gray);font-size:0.9rem;margin-bottom:1.5rem}
-        .form-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gray);font-size:1.5rem;cursor:pointer}
-        .form-group{margin-bottom:1rem}
-        .form-group label{display:block;font-size:0.8rem;font-weight:600;color:var(--gray-light);margin-bottom:0.3rem}
-        .form-group input,.form-group select,.form-group textarea{width:100%;padding:0.7rem 1rem;background:var(--dark3);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:var(--white);font-size:0.9rem;font-family:inherit;transition:border .2s}
-        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--green)}
-        .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239CA3AF' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
-        .form-group textarea{resize:vertical;min-height:80px}
-        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
-        @media(max-width:500px){.form-row{grid-template-columns:1fr}}
+        /* MODAL / FORM */
+        .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;-webkit-overflow-scrolling:touch}
+        .modal-bg.open{display:flex}
+        .modal{background:var(--dark2);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:2rem;max-width:480px;width:100%;position:relative;margin-top:2rem}
+        .modal h2{font-size:1.3rem;font-weight:800;margin-bottom:0.4rem}
+        .modal .subtitle{color:var(--gray);font-size:0.82rem;margin-bottom:1.25rem}
+        .modal-x{position:absolute;top:0.75rem;right:0.75rem;background:rgba(255,255,255,0.1);border:none;color:var(--gray-light);font-size:1.3rem;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .fg{margin-bottom:0.85rem}
+        .fg label{display:block;font-size:0.75rem;font-weight:600;color:var(--gray-light);margin-bottom:0.2rem}
+        .fg input,.fg select,.fg textarea{width:100%;padding:0.6rem 0.85rem;background:var(--dark3);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:var(--white);font-size:0.88rem;font-family:inherit;transition:border .2s;-webkit-appearance:none;appearance:none}
+        .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--green)}
+        .fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239CA3AF' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.75rem center}
+        .fg textarea{resize:vertical;min-height:70px}
+        .fg2{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem}
+        @media(max-width:400px){.fg2{grid-template-columns:1fr}}
 
         /* DASHBOARD */
-        .dash{display:none;padding-top:80px;min-height:100vh}
+        .dash{display:none;padding-top:70px;min-height:100vh}
         .dash.active{display:block}
-        .dash-header{background:var(--dark2);border-bottom:1px solid rgba(255,255,255,0.06);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:fixed;top:4px;left:0;right:0;z-index:100}
-        .dash-header .logo{font-size:1rem;font-weight:800}.dash-header .logo span{color:var(--green)}
-        .dash-content{max-width:1200px;margin:0 auto;padding:1.5rem 2rem}
-        .dash-welcome{margin-bottom:2rem}
-        .dash-welcome h1{font-size:1.8rem;font-weight:800}
-        .dash-welcome p{color:var(--gray-light)}
+        .dash-top{background:var(--dark2);border-bottom:1px solid rgba(255,255,255,0.06);padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:fixed;top:4px;left:0;right:0;z-index:100}
+        .dash-top .logo{font-size:0.9rem;font-weight:800}.dash-top .logo span{color:var(--green)}
+        .dash-body{max-width:1100px;margin:0 auto;padding:1rem 1.5rem}
+        .dash-body h1{font-size:1.5rem;font-weight:800;margin-bottom:0.25rem}
+        .dash-body .sub{color:var(--gray-light);font-size:0.9rem;margin-bottom:1.5rem}
 
-        /* STATS */
-        .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
-        .stat-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.5rem}
-        .stat-card .stat-label{font-size:0.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.05em}
-        .stat-card .stat-value{font-size:2rem;font-weight:900;color:var(--green);margin-top:0.25rem}
-        .stat-card .stat-sub{font-size:0.8rem;color:var(--gray-light);margin-top:0.25rem}
+        .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.75rem;margin-bottom:1.5rem}
+        .sc{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:1.1rem}
+        .sc .sl{font-size:0.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.05em}
+        .sc .sv{font-size:1.6rem;font-weight:900;color:var(--green);margin-top:0.15rem}
+        .sc .ss{font-size:0.72rem;color:var(--gray-light);margin-top:0.1rem}
 
-        /* TABLE */
-        .table-wrap{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden}
-        .table-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06)}
-        .table-header h3{font-size:1rem;font-weight:700}
+        .tw{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
+        .tw-head{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .tw-head h3{font-size:0.9rem;font-weight:700}
         table{width:100%;border-collapse:collapse}
-        th{text-align:left;padding:0.75rem 1.5rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray);border-bottom:1px solid rgba(255,255,255,0.06)}
-        td{padding:0.75rem 1.5rem;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.03)}
-        tr:hover td{background:rgba(0,166,81,0.03)}
-        .badge{display:inline-block;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.7rem;font-weight:600}
+        th{text-align:left;padding:0.6rem 1rem;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--gray);border-bottom:1px solid rgba(255,255,255,0.06)}
+        td{padding:0.55rem 1rem;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .badge{display:inline-block;padding:0.15rem 0.5rem;border-radius:6px;font-size:0.65rem;font-weight:600}
         .badge-green{background:rgba(0,166,81,0.15);color:var(--green)}
         .badge-gold{background:rgba(212,168,67,0.15);color:var(--gold)}
         .badge-gray{background:rgba(107,114,128,0.2);color:var(--gray-light)}
-        .badge-blue{background:rgba(59,130,246,0.15);color:var(--blue)}
 
-        /* CURRICULUM PROGRESS */
-        .curriculum-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.5rem;margin-bottom:1rem}
-        .curriculum-card h3{font-size:1.05rem;font-weight:700;margin-bottom:1rem}
-        .module{display:flex;align-items:center;gap:1rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-        .module:last-child{border:none}
-        .module-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-        .module-icon.done{background:rgba(0,166,81,0.15);color:var(--green)}
-        .module-icon.current{background:rgba(59,130,246,0.15);color:var(--blue)}
-        .module-icon.locked{background:rgba(107,114,128,0.15);color:var(--gray)}
-        .module-info{flex:1}
-        .module-info .name{font-size:0.9rem;font-weight:600}
-        .module-info .meta{font-size:0.75rem;color:var(--gray)}
-        .progress-bar{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-top:1rem}
-        .progress-fill{height:100%;background:var(--green);border-radius:3px;transition:width .5s}
+        /* CURRICULUM */
+        .curr-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+        .curr-card h3{font-size:0.95rem;font-weight:700;margin-bottom:0.75rem}
+        .mod{display:flex;align-items:center;gap:0.75rem;padding:0.55rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+        .mod:last-child{border:none}
+        .mod-i{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0}
+        .mod-i.done{background:rgba(0,166,81,0.15);color:var(--green)}
+        .mod-i.now{background:rgba(59,130,246,0.15);color:var(--blue)}
+        .mod-i.lock{background:rgba(107,114,128,0.15);color:var(--gray)}
+        .mod-n{font-size:0.82rem;font-weight:600}.mod-m{font-size:0.68rem;color:var(--gray)}
+        .pbar{height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;margin-top:0.75rem}
+        .pfill{height:100%;background:var(--green);border-radius:3px;transition:width .5s}
 
-        /* AUTH */
-        .auth-overlay{position:fixed;inset:0;background:var(--dark);z-index:300;display:none;align-items:center;justify-content:center;padding:1rem}
-        .auth-overlay.active{display:flex}
-        .auth-box{background:var(--dark2);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:2.5rem;max-width:400px;width:100%}
-        .auth-box h2{font-size:1.5rem;font-weight:800;margin-bottom:0.5rem}
-        .auth-box .subtitle{color:var(--gray);font-size:0.85rem;margin-bottom:1.5rem}
-        .auth-switch{color:var(--gray);font-size:0.85rem;margin-top:1rem}
-        .auth-switch a{color:var(--green);text-decoration:none;font-weight:600;cursor:pointer}
+        /* LOADING */
+        .spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,0.2);border-top-color:var(--green);border-radius:50%;animation:spin .6s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        /* TOAST */
+        .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--dark3);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:0.75rem 1.25rem;z-index:500;display:none;font-size:0.85rem;font-weight:500;max-width:320px;text-align:center}
+        .toast.show{display:block;animation:fadeUp .3s ease}
+        .toast.ok{border-color:var(--green);color:var(--green)}
+        .toast.err{border-color:var(--red);color:var(--red)}
+        @keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
 
         /* FOOTER */
-        footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:2.5rem 2rem;text-align:center}
-        footer .logo{font-size:1.1rem;font-weight:800;margin-bottom:0.5rem}.logo span{color:var(--green)}
-        footer p{color:var(--gray);font-size:0.8rem}
-        footer .contact{margin-top:0.75rem}
-        footer .contact a{color:var(--green);text-decoration:none}
-        .toast{position:fixed;bottom:2rem;right:2rem;background:var(--dark3);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:1rem 1.5rem;z-index:500;display:none;font-size:0.9rem;font-weight:500;max-width:350px}
-        .toast.show{display:block;animation:slideUp .3s ease}
-        .toast.success{border-color:var(--green);color:var(--green)}
-        .toast.error{border-color:var(--red);color:var(--red)}
-        @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        @media(max-width:768px){.hero-stats{gap:1rem}.hero-stat .num{font-size:1.4rem}nav .nav-links a:not(.btn){display:none}table{font-size:0.75rem}th,td{padding:0.5rem 0.75rem}.stat-grid{grid-template-columns:1fr 1fr}}
+        footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);padding:2rem 1.5rem;text-align:center}
+        footer p{color:var(--gray);font-size:0.75rem}
+        footer a{color:var(--green);text-decoration:none}
+
+        @media(max-width:768px){
+            .hero-stats{gap:1rem}.hero-stat .num{font-size:1.3rem}
+            .desk-only{display:none}
+            table{font-size:0.72rem}th,td{padding:0.4rem 0.6rem}
+            .stat-row{grid-template-columns:1fr 1fr}
+        }
     </style>
 </head>
 <body>
@@ -194,18 +185,16 @@
 <div class="flag-stripe"></div>
 
 <!-- NAV -->
-<nav>
+<nav id="mainNav">
     <div class="logo">Afghanistan <span>Vibe Coder</span> Academy</div>
-    <div class="nav-links">
-        <a href="#program">Program</a>
-        <a href="#impact">Impact</a>
-        <a href="#partner">Partnership</a>
-        <button class="btn btn-secondary btn-sm" onclick="showAuth('login')">Login</button>
-        <button class="btn btn-primary btn-sm" onclick="showEnroll()">Apply Now</button>
+    <div class="nav-right">
+        <a href="#program" class="btn btn-secondary btn-sm desk-only">Program</a>
+        <button class="btn btn-secondary btn-sm" id="navLogin">Login</button>
+        <button class="btn btn-primary btn-sm" id="navApply">Apply</button>
     </div>
 </nav>
 
-<!-- LANDING PAGE -->
+<!-- ========== LANDING ========== -->
 <div id="landing">
     <section class="hero">
         <div class="hero-content">
@@ -219,13 +208,13 @@
                 <div class="hero-stat"><div class="num">$225</div><div class="label">Per Student</div></div>
             </div>
             <div class="btn-group">
-                <button class="btn btn-primary" onclick="showEnroll()">Apply Now — It's Free →</button>
+                <button class="btn btn-primary" id="heroApply">Apply Now — It's Free →</button>
                 <a href="#partner" class="btn btn-secondary">Government Partners</a>
             </div>
         </div>
     </section>
 
-    <section class="problem" id="opportunity" style="background:var(--dark2)">
+    <section style="background:var(--dark2)">
         <div class="container">
             <div class="section-label">The Opportunity</div>
             <div class="section-title">Afghanistan's Greatest Resource<br>Is Not Underground</div>
@@ -242,46 +231,11 @@
         <div class="container">
             <div class="section-label">The Program</div>
             <div class="section-title">Zero to Developer in 3–6 Months</div>
-            <p class="section-desc">Project-based curriculum teaching the modern AI-augmented stack — not legacy CS.</p>
+            <p class="section-desc">Project-based curriculum teaching the modern AI-augmented stack.</p>
             <div class="card-grid">
-                <div class="phase">
-                    <div class="phase-num">1</div>
-                    <h3>Foundation</h3>
-                    <div class="duration">Month 1</div>
-                    <ul>
-                        <li>Digital literacy & navigation</li>
-                        <li>English for tech essentials</li>
-                        <li>Introduction to AI tools</li>
-                        <li>Build your first website — Day 1</li>
-                    </ul>
-                </div>
-                <div class="phase">
-                    <div class="phase-num">2</div>
-                    <h3>Vibe Coding Core</h3>
-                    <div class="duration">Months 2–3</div>
-                    <ul>
-                        <li>Prompt engineering mastery</li>
-                        <li>Build web apps with AI</li>
-                        <li>Frontend: HTML, CSS, React</li>
-                        <li>Backend: Supabase, Firebase</li>
-                        <li>Deploy real apps</li>
-                        <li>Capstone: Launch working app</li>
-                    </ul>
-                </div>
-                <div class="phase">
-                    <div class="phase-num">3</div>
-                    <h3>Advanced & Income</h3>
-                    <div class="duration">Months 4–6</div>
-                    <ul>
-                        <li>Full-stack development</li>
-                        <li>AI integration & chatbots</li>
-                        <li>Mobile app development</li>
-                        <li>Freelancing: Upwork & Fiverr</li>
-                        <li>Building SaaS products</li>
-                        <li>Islamic digital economy</li>
-                        <li>Final: Income-generating product</li>
-                    </ul>
-                </div>
+                <div class="phase"><div class="phase-num">1</div><h3>Foundation</h3><div class="duration">Month 1</div><ul><li>Digital literacy & navigation</li><li>English for tech essentials</li><li>Introduction to AI tools</li><li>Build your first website — Day 1</li></ul></div>
+                <div class="phase"><div class="phase-num">2</div><h3>Vibe Coding Core</h3><div class="duration">Months 2–3</div><ul><li>Prompt engineering mastery</li><li>Build web apps with AI</li><li>Frontend: HTML, CSS, React</li><li>Backend: Supabase, Firebase</li><li>Deploy real apps</li><li>Capstone: Launch working app</li></ul></div>
+                <div class="phase"><div class="phase-num">3</div><h3>Advanced & Income</h3><div class="duration">Months 4–6</div><ul><li>Full-stack development</li><li>AI integration & chatbots</li><li>Mobile app development</li><li>Freelancing: Upwork & Fiverr</li><li>Building SaaS products</li><li>Islamic digital economy</li><li>Final: Income-generating product</li></ul></div>
             </div>
         </div>
     </section>
@@ -299,19 +253,19 @@
         </div>
     </section>
 
-    <section class="cost" id="cost" style="background:var(--dark2)">
+    <section style="background:var(--dark2)">
         <div class="container">
             <div class="section-label">Investment</div>
-            <div class="section-title">Life-Changing Skills at<br>Unprecedented Cost</div>
+            <div class="section-title">Life-Changing Skills at Unprecedented Cost</div>
             <div class="cost-highlight"><span class="dollar">$</span><span class="amount">225</span><span class="per">per student</span></div>
-            <p class="cost-compare">One Western university scholarship = <strong>$50,000–$100,000/year</strong><br>This program trains <strong>1,000 youth for less than 1 scholarship</strong></p>
+            <p class="cost-compare">One Western university scholarship = <strong>$50,000–$100,000/year</strong><br>This trains <strong>1,000 youth for less than 1 scholarship</strong></p>
         </div>
     </section>
 
     <section id="partner" style="background:var(--dark2)">
         <div class="container">
             <div class="section-label">Partnership</div>
-            <div class="section-title">Shared Responsibility,<br>Shared Reward</div>
+            <div class="section-title">Shared Responsibility, Shared Reward</div>
             <div class="partner-grid">
                 <div class="partner-box gov"><h3>🏛 Government Provides</h3><ul><li>Student recruitment via schools</li><li>Subsidized internet access</li><li>Government-endorsed certification</li><li>Ministry coordination contact</li><li>Community & religious leader support</li></ul></div>
                 <div class="partner-box vcl"><h3>⚡ VibeCoderLab Provides</h3><ul><li>Full curriculum & materials</li><li>Online learning platform</li><li>Experienced instructors & mentors</li><li>Dari & Pashto translation</li><li>Industry certificates</li><li>Freelance job pipeline</li><li>Alumni community</li></ul></div>
@@ -319,12 +273,12 @@
         </div>
     </section>
 
-    <section id="why" style="background:var(--dark2)">
+    <section style="background:var(--dark2)">
         <div class="container">
             <div class="section-label">Why VibeCoderLab</div>
             <div class="section-title">Built by Builders, Not Theorists</div>
             <div class="why-grid">
-                <div class="why-card"><h4>$32M Business Empire</h4><p>Founder built RM142M empire with 1,500+ staff from scratch. We execute at scale.</p></div>
+                <div class="why-card"><h4>$32M Business Empire</h4><p>RM142M empire with 1,500+ staff from scratch. We execute at scale.</p></div>
                 <div class="why-card"><h4>130+ Schools Proven</h4><p>Brainy Bunch runs 130+ schools across 6 countries. Education is our DNA.</p></div>
                 <div class="why-card"><h4>AI-Native Method</h4><p>We teach the NEW way to build software — with AI as your co-pilot.</p></div>
                 <div class="why-card"><h4>Islamic Values</h4><p>Anti-riba, pro-ummah. Building the Muslim world's digital future with faith.</p></div>
@@ -337,7 +291,7 @@
             <div class="quote">"Afghanistan's greatest resource is not underground — it is in the minds of its youth."</div>
             <div class="quote-attr">— Afghanistan Vibe Coder Academy</div>
             <div class="btn-group">
-                <button class="btn btn-primary" onclick="showEnroll()">Apply Now →</button>
+                <button class="btn btn-primary" id="ctaApply">Apply Now →</button>
                 <a href="mailto:coachfadzil@gmail.com?subject=Afghanistan%20Vibe%20Coder%20Academy" class="btn btn-secondary">Contact Us</a>
             </div>
             <div class="bismillah">بسم الله الرحمن الرحيم</div>
@@ -345,160 +299,144 @@
     </section>
 
     <footer>
-        <div class="logo">Vibe<span>Coder</span>Lab.ai</div>
+        <div class="logo" style="font-size:1rem;font-weight:800;margin-bottom:0.5rem">Vibe<span style="color:var(--green)">Coder</span>Lab.ai</div>
         <p>Building the Muslim world's digital future, one youth at a time.</p>
-        <div class="contact"><p>📧 <a href="mailto:coachfadzil@gmail.com">coachfadzil@gmail.com</a> · 🌐 <a href="https://www.vibecoderlab.ai">vibecoderlab.ai</a></p></div>
-        <p style="margin-top:0.75rem;font-size:0.7rem;color:#4B5563">© 2026 VibeCoderLab.ai · Malaysia</p>
+        <p style="margin-top:0.5rem">📧 <a href="mailto:coachfadzil@gmail.com">coachfadzil@gmail.com</a> · 🌐 <a href="https://www.vibecoderlab.ai">vibecoderlab.ai</a></p>
+        <p style="margin-top:0.5rem;font-size:0.65rem;color:#4B5563">© 2026 VibeCoderLab.ai · Malaysia</p>
     </footer>
 </div>
 
-<!-- ENROLLMENT FORM -->
-<div class="form-overlay" id="enrollOverlay">
-    <div class="form-box">
-        <button class="form-close" onclick="hideEnroll()">✕</button>
+<!-- ========== ENROLL MODAL ========== -->
+<div class="modal-bg" id="enrollModal">
+    <div class="modal">
+        <button class="modal-x" id="enrollClose">✕</button>
         <h2>🎓 Apply Now</h2>
         <p class="subtitle">Free program for Afghan youth ages 15–18</p>
-        <form id="enrollForm" onsubmit="submitEnroll(event)">
-            <div class="form-row">
-                <div class="form-group"><label>First Name *</label><input type="text" id="ef_first" required></div>
-                <div class="form-group"><label>Last Name *</label><input type="text" id="ef_last" required></div>
+        <form id="enrollForm">
+            <div class="fg2">
+                <div class="fg"><label>First Name *</label><input type="text" name="first_name" required></div>
+                <div class="fg"><label>Last Name *</label><input type="text" name="last_name" required></div>
             </div>
-            <div class="form-group"><label>Email *</label><input type="email" id="ef_email" required></div>
-            <div class="form-row">
-                <div class="form-group"><label>Age *</label><select id="ef_age" required><option value="">Select</option><option>15</option><option>16</option><option>17</option><option>18</option></select></div>
-                <div class="form-group"><label>Gender</label><select id="ef_gender"><option value="">Prefer not to say</option><option>Male</option><option>Female</option></select></div>
+            <div class="fg"><label>Email *</label><input type="email" name="email" required></div>
+            <div class="fg2">
+                <div class="fg"><label>Age *</label><select name="age" required><option value="">Select</option><option>15</option><option>16</option><option>17</option><option>18</option></select></div>
+                <div class="fg"><label>Gender</label><select name="gender"><option value="">Prefer not to say</option><option>Male</option><option>Female</option></select></div>
             </div>
-            <div class="form-group"><label>Province *</label><select id="ef_province" required>
+            <div class="fg"><label>Province *</label><select name="province" required>
                 <option value="">Select Province</option>
-                <option>Kabul</option><option>Herat</option><option>Kandahar</option><option>Mazar-i-Sharif</option><option>Nangarhar</option><option>Balkh</option><option>Badakhshan</option><option>Helmand</option><option>Khost</option><option>Ghazni</option><option>Baghlan</option><option>Kunduz</option><option>Takhar</option><option>Parwan</option><option>Logar</option><option>Wardak</option><option>Paktia</option><option>Paktika</option><option>Nuristan</option><option>Kunarar</option><option>Samangan</option><option>Sari Pul</option><option>Jowzjan</option><option>Faryab</option><option>Badghis</option><option>Farah</option><option>Ghor</option><option>Daykundi</option><option>Uruzgan</option><option>Zabul</option><option>Nimroz</option><option>Panjshir</option><option>Sar-e Pol</option><option>Other</option>
+                <option>Kabul</option><option>Herat</option><option>Kandahar</option><option>Mazar-i-Sharif</option><option>Nangarhar</option><option>Balkh</option><option>Badakhshan</option><option>Helmand</option><option>Khost</option><option>Ghazni</option><option>Baghlan</option><option>Kunduz</option><option>Takhar</option><option>Parwan</option><option>Logar</option><option>Wardak</option><option>Paktia</option><option>Paktika</option><option>Nuristan</option><option>Kunar</option><option>Samangan</option><option>Sari Pul</option><option>Jowzjan</option><option>Faryab</option><option>Badghis</option><option>Farah</option><option>Ghor</option><option>Daykundi</option><option>Uruzgan</option><option>Zabul</option><option>Nimroz</option><option>Panjshir</option><option>Other</option>
             </select></div>
-            <div class="form-group"><label>Do you have access to a smartphone or computer? *</label><select id="ef_device" required><option value="">Select</option><option>Smartphone only</option><option>Laptop/Computer</option><option>Both</option><option>None (need support)</option></select></div>
-            <div class="form-group"><label>Internet access *</label><select id="ef_internet" required><option value="">Select</option><option>Regular (daily)</option><option>Limited (few times/week)</option><option>Very limited</option><option>No access</option></select></div>
-            <div class="form-group"><label>Why do you want to join? (Optional)</label><textarea id="ef_why" placeholder="Tell us your motivation..."></textarea></div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem">Submit Application →</button>
+            <div class="fg"><label>Device access *</label><select name="device" required><option value="">Select</option><option>Smartphone only</option><option>Laptop/Computer</option><option>Both</option><option>None (need support)</option></select></div>
+            <div class="fg"><label>Internet access *</label><select name="internet" required><option value="">Select</option><option>Regular (daily)</option><option>Limited (few times/week)</option><option>Very limited</option><option>No access</option></select></div>
+            <div class="fg"><label>Why do you want to join? (Optional)</label><textarea name="motivation" placeholder="Tell us your motivation..."></textarea></div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem" id="enrollSubmit">Submit Application →</button>
         </form>
     </div>
 </div>
 
-<!-- PARTNER INQUIRY FORM -->
-<div class="form-overlay" id="partnerOverlay">
-    <div class="form-box">
-        <button class="form-close" onclick="hidePartner()">✕</button>
+<!-- ========== PARTNER MODAL ========== -->
+<div class="modal-bg" id="partnerModal">
+    <div class="modal">
+        <button class="modal-x" id="partnerClose">✕</button>
         <h2>🏛 Government Partnership</h2>
         <p class="subtitle">For ministry officials and government representatives</p>
-        <form id="partnerForm" onsubmit="submitPartner(event)">
-            <div class="form-row">
-                <div class="form-group"><label>Full Name *</label><input type="text" id="pf_name" required></div>
-                <div class="form-group"><label>Title/Position *</label><input type="text" id="pf_title" required></div>
+        <form id="partnerForm">
+            <div class="fg2">
+                <div class="fg"><label>Full Name *</label><input type="text" name="name" required></div>
+                <div class="fg"><label>Title/Position *</label><input type="text" name="title" required></div>
             </div>
-            <div class="form-group"><label>Ministry/Organization *</label><input type="text" id="pf_org" required></div>
-            <div class="form-group"><label>Email *</label><input type="email" id="pf_email" required></div>
-            <div class="form-group"><label>Phone (with country code)</label><input type="tel" id="pf_phone" placeholder="+93..."></div>
-            <div class="form-group"><label>Message *</label><textarea id="pf_message" required placeholder="Describe your interest in partnering..."></textarea></div>
-            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:0.5rem">Send Partnership Inquiry →</button>
+            <div class="fg"><label>Ministry/Organization *</label><input type="text" name="organization" required></div>
+            <div class="fg"><label>Email *</label><input type="email" name="email" required></div>
+            <div class="fg"><label>Phone (with country code)</label><input type="tel" name="phone" placeholder="+93..."></div>
+            <div class="fg"><label>Message *</label><textarea name="message" required placeholder="Describe your interest in partnering..."></textarea></div>
+            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:0.5rem" id="partnerSubmit">Send Inquiry →</button>
         </form>
     </div>
 </div>
 
-<!-- AUTH -->
-<div class="auth-overlay" id="authOverlay">
-    <div class="auth-box">
-        <div id="loginForm">
+<!-- ========== AUTH MODAL ========== -->
+<div class="modal-bg" id="authModal">
+    <div class="modal">
+        <button class="modal-x" id="authClose">✕</button>
+        <div id="loginView">
             <h2>Welcome Back</h2>
             <p class="subtitle">Sign in to your dashboard</p>
-            <div class="form-group"><label>Email</label><input type="email" id="auth_email"></div>
-            <div class="form-group"><label>Password</label><input type="password" id="auth_password"></div>
-            <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">Sign In</button>
-            <p class="auth-switch">Don't have an account? <a onclick="showAuth('register')">Register</a></p>
+            <form id="loginForm">
+                <div class="fg"><label>Email</label><input type="email" name="email" required></div>
+                <div class="fg"><label>Password</label><input type="password" name="password" required></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="loginBtn">Sign In</button>
+            </form>
+            <p style="color:var(--gray);font-size:0.82rem;margin-top:0.75rem;text-align:center">Don't have an account? <a href="#" style="color:var(--green);font-weight:600" id="goRegister">Register</a></p>
         </div>
-        <div id="registerForm" style="display:none">
+        <div id="registerView" style="display:none">
             <h2>Create Account</h2>
             <p class="subtitle">Register to track your application</p>
-            <div class="form-group"><label>Email</label><input type="email" id="reg_email"></div>
-            <div class="form-group"><label>Password (min 6 chars)</label><input type="password" id="reg_password"></div>
-            <div class="form-group"><label>Role</label><select id="reg_role"><option value="student">Student</option><option value="admin">Admin</option></select></div>
-            <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doRegister()">Create Account</button>
-            <p class="auth-switch">Already have an account? <a onclick="showAuth('login')">Sign In</a></p>
+            <form id="registerForm">
+                <div class="fg"><label>Email</label><input type="email" name="email" required></div>
+                <div class="fg"><label>Password (min 6 chars)</label><input type="password" name="password" required minlength="6"></div>
+                <div class="fg"><label>Role</label><select name="role"><option value="student">Student</option><option value="admin">Admin</option></select></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="regBtn">Create Account</button>
+            </form>
+            <p style="color:var(--gray);font-size:0.82rem;margin-top:0.75rem;text-align:center">Already have an account? <a href="#" style="color:var(--green);font-weight:600" id="goLogin">Sign In</a></p>
         </div>
-        <button style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gray);font-size:1.2rem;cursor:pointer" onclick="hideAuth()">✕</button>
     </div>
 </div>
 
-<!-- STUDENT DASHBOARD -->
+<!-- ========== STUDENT DASHBOARD ========== -->
 <div class="dash" id="studentDash">
-    <div class="dash-header">
+    <div class="dash-top">
         <div class="logo">Afghanistan <span>Vibe Coder</span> Academy</div>
-        <div style="display:flex;gap:0.75rem;align-items:center">
-            <span id="studentName" style="font-size:0.85rem;color:var(--gray-light)"></span>
-            <button class="btn btn-secondary btn-sm" onclick="doLogout()">Sign Out</button>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+            <span id="studentEmail" style="font-size:0.75rem;color:var(--gray-light)"></span>
+            <button class="btn btn-secondary btn-sm" id="studentLogout">Sign Out</button>
         </div>
     </div>
-    <div class="dash-content" style="padding-top:1rem">
-        <div class="dash-welcome">
-            <h1 id="dashGreeting">Salam! 👋</h1>
-            <p id="dashSubtext">Your learning journey continues</p>
+    <div class="dash-body">
+        <h1>Salam! 👋</h1>
+        <p class="sub">Your learning journey continues</p>
+        <div class="stat-row">
+            <div class="sc"><div class="sl">Current Phase</div><div class="sv" id="sPhase">1</div><div class="ss">Foundation</div></div>
+            <div class="sc"><div class="sl">Progress</div><div class="sv" id="sProg">0%</div><div class="ss">Overall completion</div></div>
+            <div class="sc"><div class="sl">Projects</div><div class="sv" id="sProj">0</div><div class="ss">Completed</div></div>
+            <div class="sc"><div class="sl">Days Active</div><div class="sv" id="sDays">0</div><div class="ss">Since enrollment</div></div>
         </div>
-        <div class="stat-grid">
-            <div class="stat-card"><div class="stat-label">Current Phase</div><div class="stat-value" id="statPhase">1</div><div class="stat-sub">Foundation</div></div>
-            <div class="stat-card"><div class="stat-label">Progress</div><div class="stat-value" id="statProgress">0%</div><div class="stat-sub">Overall completion</div></div>
-            <div class="stat-card"><div class="stat-label">Projects</div><div class="stat-value" id="statProjects">0</div><div class="stat-sub">Completed</div></div>
-            <div class="stat-card"><div class="stat-label">Days Active</div><div class="stat-value" id="statDays">0</div><div class="stat-sub">Since enrollment</div></div>
-        </div>
-
-        <div class="curriculum-card">
+        <div class="curr-card">
             <h3>📚 Your Curriculum</h3>
-            <div id="curriculumList"></div>
-            <div class="progress-bar"><div class="progress-fill" id="dashProgressBar" style="width:0%"></div></div>
+            <div id="currList"></div>
+            <div class="pbar"><div class="pfill" id="sBar" style="width:0%"></div></div>
         </div>
-
-        <div class="table-wrap" style="margin-top:1.5rem">
-            <div class="table-header"><h3>📋 Your Applications</h3></div>
-            <table>
-                <thead><tr><th>Date</th><th>Name</th><th>Province</th><th>Status</th></tr></thead>
-                <tbody id="studentAppsTable"></tbody>
-            </table>
+        <div class="tw">
+            <div class="tw-head"><h3>📋 Your Applications</h3></div>
+            <table><thead><tr><th>Date</th><th>Name</th><th>Province</th><th>Status</th></tr></thead><tbody id="sApps"></tbody></table>
         </div>
     </div>
 </div>
 
-<!-- ADMIN DASHBOARD -->
+<!-- ========== ADMIN DASHBOARD ========== -->
 <div class="dash" id="adminDash">
-    <div class="dash-header">
+    <div class="dash-top">
         <div class="logo">Afghanistan <span>Vibe Coder</span> Academy · Admin</div>
-        <div style="display:flex;gap:0.75rem;align-items:center">
-            <span style="font-size:0.85rem;color:var(--gray-light)">Admin</span>
-            <button class="btn btn-secondary btn-sm" onclick="doLogout()">Sign Out</button>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+            <span style="font-size:0.75rem;color:var(--gray-light)">Admin</span>
+            <button class="btn btn-secondary btn-sm" id="adminLogout">Sign Out</button>
         </div>
     </div>
-    <div class="dash-content" style="padding-top:1rem">
-        <div class="dash-welcome">
-            <h1>Admin Dashboard 🛡</h1>
-            <p>Manage applications and students</p>
+    <div class="dash-body">
+        <h1>Admin Dashboard 🛡</h1>
+        <p class="sub">Manage applications and students</p>
+        <div class="stat-row">
+            <div class="sc"><div class="sl">Total Applications</div><div class="sv" id="aTotal">0</div></div>
+            <div class="sc"><div class="sl">Pending Review</div><div class="sv" id="aPending">0</div><div class="ss" style="color:var(--gold)">Needs attention</div></div>
+            <div class="sc"><div class="sl">Accepted</div><div class="sv" id="aAccepted">0</div><div class="ss" style="color:var(--green)">Enrolled</div></div>
+            <div class="sc"><div class="sl">Provinces</div><div class="sv" id="aProv">0</div><div class="ss">Geographic reach</div></div>
         </div>
-        <div class="stat-grid">
-            <div class="stat-card"><div class="stat-label">Total Applications</div><div class="stat-value" id="adminTotal">0</div></div>
-            <div class="stat-card"><div class="stat-label">Pending Review</div><div class="stat-value" id="adminPending">0</div><div class="stat-sub" style="color:var(--gold)">Needs attention</div></div>
-            <div class="stat-card"><div class="stat-label">Accepted</div><div class="stat-value" id="adminAccepted">0</div><div class="stat-sub" style="color:var(--green)">Enrolled</div></div>
-            <div class="stat-card"><div class="stat-label">Provinces</div><div class="stat-value" id="adminProvinces">0</div><div class="stat-sub">Geographic reach</div></div>
+        <div class="tw">
+            <div class="tw-head"><h3>📋 All Applications</h3><button class="btn btn-primary btn-sm" id="exportBtn">Export CSV</button></div>
+            <table><thead><tr><th>Date</th><th>Name</th><th>Age</th><th>Province</th><th>Device</th><th>Internet</th><th>Status</th><th>Action</th></tr></thead><tbody id="aApps"></tbody></table>
         </div>
-
-        <div class="table-wrap">
-            <div class="table-header">
-                <h3>📋 All Applications</h3>
-                <button class="btn btn-primary btn-sm" onclick="exportCSV()">Export CSV</button>
-            </div>
-            <table>
-                <thead><tr><th>Date</th><th>Name</th><th>Age</th><th>Province</th><th>Device</th><th>Internet</th><th>Status</th><th>Action</th></tr></thead>
-                <tbody id="adminAppsTable"></tbody>
-            </table>
-        </div>
-
-        <div class="table-wrap" style="margin-top:1.5rem">
-            <div class="table-header"><h3>🏛 Partnership Inquiries</h3></div>
-            <table>
-                <thead><tr><th>Date</th><th>Name</th><th>Organization</th><th>Email</th><th>Message</th></tr></thead>
-                <tbody id="adminPartnerTable"></tbody>
-            </table>
+        <div class="tw">
+            <div class="tw-head"><h3>🏛 Partnership Inquiries</h3></div>
+            <table><thead><tr><th>Date</th><th>Name</th><th>Org</th><th>Email</th><th>Message</th></tr></thead><tbody id="aPartners"></tbody></table>
         </div>
     </div>
 </div>
@@ -506,263 +444,267 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ===== SUPABASE =====
-const SUPABASE_URL = 'https://ykrxuyvixnoiwutwibpf.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlrcnh1eXZpeG5vaXd1dHdpYnBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMDU2MzIsImV4cCI6MjA5MTU4MTYzMn0.4AhwEBHNWmctg6jodiPlIwhWHGCE4pUT7lxP4iBvTT0';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+(function(){
+    const SB_URL = 'https://ykrxuyvixnoiwutwibpf.supabase.co';
+    const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlrcnh1eXZpeG5vaXd1dHdpYnBmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwMDU2MzIsImV4cCI6MjA5MTU4MTYzMn0.4AhwEBHNWmctg6jodiPlIwhWHGCE4pUT7lxP4iBvTT0';
 
-// ===== TOAST =====
-function toast(msg, type='success') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast show ' + type;
-    setTimeout(() => t.className = 'toast', 3000);
-}
+    let sb;
+    try { sb = window.supabase.createClient(SB_URL, SB_KEY); } catch(e) { console.error('Supabase init failed', e); }
 
-// ===== ENROLLMENT =====
-function showEnroll() { document.getElementById('enrollOverlay').classList.add('active'); }
-function hideEnroll() { document.getElementById('enrollOverlay').classList.remove('active'); }
-
-async function submitEnroll(e) {
-    e.preventDefault();
-    const data = {
-        first_name: document.getElementById('ef_first').value,
-        last_name: document.getElementById('ef_last').value,
-        email: document.getElementById('ef_email').value,
-        age: parseInt(document.getElementById('ef_age').value),
-        gender: document.getElementById('ef_gender').value,
-        province: document.getElementById('ef_province').value,
-        device: document.getElementById('ef_device').value,
-        internet: document.getElementById('ef_internet').value,
-        motivation: document.getElementById('ef_why').value,
-        status: 'pending'
-    };
-    const { error } = await supabase.from('afg_enrollments').insert(data);
-    if (error) { toast('Error: ' + error.message, 'error'); return; }
-    toast('Application submitted! We\'ll contact you soon. 🎉');
-    hideEnroll();
-    document.getElementById('enrollForm').reset();
-}
-
-// ===== PARTNER INQUIRY =====
-function showPartner() { document.getElementById('partnerOverlay').classList.add('active'); }
-function hidePartner() { document.getElementById('partnerOverlay').classList.remove('active'); }
-
-async function submitPartner(e) {
-    e.preventDefault();
-    const data = {
-        name: document.getElementById('pf_name').value,
-        title: document.getElementById('pf_title').value,
-        organization: document.getElementById('pf_org').value,
-        email: document.getElementById('pf_email').value,
-        phone: document.getElementById('pf_phone').value,
-        message: document.getElementById('pf_message').value
-    };
-    const { error } = await supabase.from('afg_partners').insert(data);
-    if (error) { toast('Error: ' + error.message, 'error'); return; }
-    toast('Partnership inquiry sent! 🤝');
-    hidePartner();
-    document.getElementById('partnerForm').reset();
-}
-
-// ===== AUTH =====
-function showAuth(mode) {
-    document.getElementById('authOverlay').classList.add('active');
-    document.getElementById('loginForm').style.display = mode === 'login' ? 'block' : 'none';
-    document.getElementById('registerForm').style.display = mode === 'register' ? 'block' : 'none';
-}
-function hideAuth() { document.getElementById('authOverlay').classList.remove('active'); }
-
-async function doRegister() {
-    const email = document.getElementById('reg_email').value;
-    const password = document.getElementById('reg_password').value;
-    const role = document.getElementById('reg_role').value;
-    if (!email || !password) { toast('Fill in all fields', 'error'); return; }
-    const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { role } } });
-    if (error) { toast(error.message, 'error'); return; }
-    toast('Account created! Check email to verify, then sign in.');
-    showAuth('login');
-}
-
-async function doLogin() {
-    const email = document.getElementById('auth_email').value;
-    const password = document.getElementById('auth_password').value;
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) { toast(error.message, 'error'); return; }
-    hideAuth();
-    const role = data.user?.user_metadata?.role || 'student';
-    if (role === 'admin') loadAdminDash();
-    else loadStudentDash();
-}
-
-async function doLogout() {
-    await supabase.auth.signOut();
-    document.getElementById('studentDash').classList.remove('active');
-    document.getElementById('adminDash').classList.remove('active');
-    document.getElementById('landing').style.display = 'block';
-    toast('Signed out');
-}
-
-// ===== STUDENT DASHBOARD =====
-async function loadStudentDash() {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
-    document.getElementById('landing').style.display = 'none';
-    document.getElementById('studentDash').classList.add('active');
-    document.getElementById('studentName').textContent = user.email;
-
-    // Load student's applications
-    const { data: apps } = await supabase.from('afg_enrollments').select('*').eq('email', user.email).order('created_at', { ascending: false });
-    const tbody = document.getElementById('studentAppsTable');
-    tbody.innerHTML = '';
-    if (apps && apps.length) {
-        apps.forEach(a => {
-            const statusBadge = a.status === 'accepted' ? 'badge-green' : a.status === 'pending' ? 'badge-gold' : 'badge-gray';
-            tbody.innerHTML += `<tr><td>${new Date(a.created_at).toLocaleDateString()}</td><td>${a.first_name} ${a.last_name}</td><td>${a.province}</td><td><span class="badge ${statusBadge}">${a.status}</span></td></tr>`;
-        });
-    } else {
-        tbody.innerHTML = '<tr><td colspan="4" style="color:var(--gray)">No applications yet</td></tr>';
+    // Toast
+    function toast(msg, type) {
+        var t = document.getElementById('toast');
+        t.textContent = msg;
+        t.className = 'toast show ' + (type === 'error' ? 'err' : 'ok');
+        setTimeout(function(){ t.className = 'toast'; }, 3500);
     }
 
-    // Load curriculum progress
-    loadCurriculum();
-}
+    // Modal helpers
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-function loadCurriculum() {
-    const modules = [
-        { name: 'Digital Literacy & Internet', phase: 1, icon: '🌐' },
-        { name: 'English for Tech', phase: 1, icon: '📝' },
-        { name: 'Introduction to AI Tools', phase: 1, icon: '🤖' },
-        { name: 'Build Your First Website', phase: 1, icon: '🏗' },
-        { name: 'Prompt Engineering', phase: 2, icon: '💬' },
-        { name: 'Web Apps with AI', phase: 2, icon: '⚡' },
-        { name: 'Frontend: HTML, CSS, React', phase: 2, icon: '🎨' },
-        { name: 'Backend: Supabase', phase: 2, icon: '🗄' },
-        { name: 'Deploy Your Apps', phase: 2, icon: '🚀' },
-        { name: 'Capstone Project', phase: 2, icon: '🏆' },
-        { name: 'Full-Stack Development', phase: 3, icon: '🔧' },
-        { name: 'AI Integration & Chatbots', phase: 3, icon: '🤖' },
-        { name: 'Mobile App Development', phase: 3, icon: '📱' },
-        { name: 'Freelancing & Income', phase: 3, icon: '💰' },
-        { name: 'SaaS Product Building', phase: 3, icon: '📦' },
-        { name: 'Final Project', phase: 3, icon: '🎓' }
-    ];
+    // Wire up all buttons with addEventListener (more reliable than onclick in in-app browsers)
+    document.getElementById('navApply').addEventListener('click', function(){ openModal('enrollModal'); });
+    document.getElementById('heroApply').addEventListener('click', function(){ openModal('enrollModal'); });
+    document.getElementById('ctaApply').addEventListener('click', function(){ openModal('enrollModal'); });
+    document.getElementById('enrollClose').addEventListener('click', function(){ closeModal('enrollModal'); });
+    document.getElementById('enrollModal').addEventListener('click', function(e){ if(e.target===this) closeModal('enrollModal'); });
 
-    const list = document.getElementById('curriculumList');
-    list.innerHTML = '';
-    let completed = 4; // demo: first 4 done
-    modules.forEach((m, i) => {
-        const status = i < completed ? 'done' : i === completed ? 'current' : 'locked';
-        const iconClass = status === 'done' ? 'done' : status === 'current' ? 'current' : 'locked';
-        list.innerHTML += `<div class="module"><div class="module-icon ${iconClass}">${status === 'done' ? '✓' : m.icon}</div><div class="module-info"><div class="name">${m.name}</div><div class="meta">Phase ${m.phase}</div></div></div>`;
-    });
+    document.getElementById('navLogin').addEventListener('click', function(){ openModal('authModal'); });
+    document.getElementById('authClose').addEventListener('click', function(){ closeModal('authModal'); });
+    document.getElementById('authModal').addEventListener('click', function(e){ if(e.target===this) closeModal('authModal'); });
 
-    const pct = Math.round((completed / modules.length) * 100);
-    document.getElementById('dashProgressBar').style.width = pct + '%';
-    document.getElementById('statProgress').textContent = pct + '%';
-    document.getElementById('statPhase').textContent = completed < 4 ? '1' : completed < 10 ? '2' : '3';
-    document.getElementById('statProjects').textContent = completed >= 9 ? '1' : '0';
-}
+    document.getElementById('goRegister').addEventListener('click', function(e){ e.preventDefault(); document.getElementById('loginView').style.display='none'; document.getElementById('registerView').style.display='block'; });
+    document.getElementById('goLogin').addEventListener('click', function(e){ e.preventDefault(); document.getElementById('registerView').style.display='none'; document.getElementById('loginView').style.display='block'; });
 
-// ===== ADMIN DASHBOARD =====
-async function loadAdminDash() {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return;
-    document.getElementById('landing').style.display = 'none';
-    document.getElementById('studentDash').classList.remove('active');
-    document.getElementById('adminDash').classList.add('active');
-
-    // Load enrollments
-    const { data: apps } = await supabase.from('afg_enrollments').select('*').order('created_at', { ascending: false });
-    const tbody = document.getElementById('adminAppsTable');
-    tbody.innerHTML = '';
-
-    let pending = 0, accepted = 0;
-    const provinces = new Set();
-
-    if (apps && apps.length) {
-        apps.forEach(a => {
-            provinces.add(a.province);
-            if (a.status === 'pending') pending++;
-            if (a.status === 'accepted') accepted++;
-            const statusBadge = a.status === 'accepted' ? 'badge-green' : a.status === 'pending' ? 'badge-gold' : a.status === 'rejected' ? 'badge-gray' : 'badge-blue';
-            tbody.innerHTML += `<tr>
-                <td>${new Date(a.created_at).toLocaleDateString()}</td>
-                <td>${a.first_name} ${a.last_name}</td>
-                <td>${a.age}</td>
-                <td>${a.province}</td>
-                <td>${a.device || '-'}</td>
-                <td>${a.internet || '-'}</td>
-                <td><span class="badge ${statusBadge}">${a.status}</span></td>
-                <td>
-                    ${a.status === 'pending' ? `<button class="btn btn-primary btn-sm" onclick="updateStatus(${a.id},'accepted')">Accept</button> <button class="btn btn-sm" style="background:var(--red);color:white" onclick="updateStatus(${a.id},'rejected')">Reject</button>` : '—'}
-                </td>
-            </tr>`;
-        });
-    } else {
-        tbody.innerHTML = '<tr><td colspan="8" style="color:var(--gray)">No applications yet</td></tr>';
-    }
-
-    document.getElementById('adminTotal').textContent = apps ? apps.length : 0;
-    document.getElementById('adminPending').textContent = pending;
-    document.getElementById('adminAccepted').textContent = accepted;
-    document.getElementById('adminProvinces').textContent = provinces.size;
-
-    // Load partner inquiries
-    const { data: partners } = await supabase.from('afg_partners').select('*').order('created_at', { ascending: false });
-    const ptbody = document.getElementById('adminPartnerTable');
-    ptbody.innerHTML = '';
-    if (partners && partners.length) {
-        partners.forEach(p => {
-            ptbody.innerHTML += `<tr><td>${new Date(p.created_at).toLocaleDateString()}</td><td>${p.name}</td><td>${p.organization}</td><td>${p.email}</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${p.message}</td></tr>`;
-        });
-    } else {
-        ptbody.innerHTML = '<tr><td colspan="5" style="color:var(--gray)">No inquiries yet</td></tr>';
-    }
-}
-
-async function updateStatus(id, status) {
-    const { error } = await supabase.from('afg_enrollments').update({ status }).eq('id', id);
-    if (error) { toast('Error: ' + error.message, 'error'); return; }
-    toast(`Application ${status}!`);
-    loadAdminDash();
-}
-
-function exportCSV() {
-    // Fetch and export
-    supabase.from('afg_enrollments').select('*').order('created_at', { ascending: false }).then(({ data }) => {
-        if (!data || !data.length) { toast('No data to export', 'error'); return; }
-        const headers = Object.keys(data[0]);
-        const csv = [headers.join(','), ...data.map(r => headers.map(h => `"${(r[h] ?? '').toString().replace(/"/g, '""')}"`).join(','))].join('\n');
-        const blob = new Blob([csv], { type: 'text/csv' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'afg_enrollments_' + new Date().toISOString().slice(0, 10) + '.csv';
-        a.click();
-        toast('CSV exported! 📄');
-    });
-}
-
-// ===== CHECK SESSION ON LOAD =====
-async function checkSession() {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) {
-        const role = session.user?.user_metadata?.role || 'student';
-        if (role === 'admin') loadAdminDash();
-        else loadStudentDash();
-    }
-}
-checkSession();
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
+    // ENROLLMENT
+    document.getElementById('enrollForm').addEventListener('submit', function(e){
         e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        if(!sb){ toast('System loading, please wait...', 'error'); return; }
+        var fd = new FormData(this);
+        var data = { first_name: fd.get('first_name'), last_name: fd.get('last_name'), email: fd.get('email'), age: parseInt(fd.get('age')), gender: fd.get('gender'), province: fd.get('province'), device: fd.get('device'), internet: fd.get('internet'), motivation: fd.get('motivation'), status: 'pending' };
+        var btn = document.getElementById('enrollSubmit');
+        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Submitting...';
+        sb.from('afg_enrollments').insert(data).then(function(r){
+            btn.disabled = false; btn.textContent = 'Submit Application →';
+            if(r.error){ toast('Error: ' + r.error.message, 'error'); return; }
+            toast('Application submitted! We\'ll contact you soon. 🎉');
+            closeModal('enrollModal');
+            document.getElementById('enrollForm').reset();
+        });
     });
-});
+
+    // PARTNER - open from the partner section link
+    // Add a partner button dynamically
+    var partnerSection = document.getElementById('partner');
+    var pBtn = document.createElement('button');
+    pBtn.className = 'btn btn-gold';
+    pBtn.textContent = '🏛 Partner With Us →';
+    pBtn.style.cssText = 'display:block;margin:1.5rem auto 0';
+    pBtn.addEventListener('click', function(){ openModal('partnerModal'); });
+    partnerSection.querySelector('.container').appendChild(pBtn);
+
+    document.getElementById('partnerClose').addEventListener('click', function(){ closeModal('partnerModal'); });
+    document.getElementById('partnerModal').addEventListener('click', function(e){ if(e.target===this) closeModal('partnerModal'); });
+
+    document.getElementById('partnerForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!sb){ toast('System loading, please wait...', 'error'); return; }
+        var fd = new FormData(this);
+        var data = { name: fd.get('name'), title: fd.get('title'), organization: fd.get('organization'), email: fd.get('email'), phone: fd.get('phone'), message: fd.get('message') };
+        var btn = document.getElementById('partnerSubmit');
+        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Sending...';
+        sb.from('afg_partners').insert(data).then(function(r){
+            btn.disabled = false; btn.textContent = 'Send Inquiry →';
+            if(r.error){ toast('Error: ' + r.error.message, 'error'); return; }
+            toast('Partnership inquiry sent! 🤝');
+            closeModal('partnerModal');
+            document.getElementById('partnerForm').reset();
+        });
+    });
+
+    // AUTH - LOGIN
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!sb){ toast('System loading, please wait...', 'error'); return; }
+        var fd = new FormData(this);
+        var btn = document.getElementById('loginBtn');
+        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Signing in...';
+        sb.auth.signInWithPassword({ email: fd.get('email'), password: fd.get('password') }).then(function(r){
+            btn.disabled = false; btn.textContent = 'Sign In';
+            if(r.error){ toast(r.error.message, 'error'); return; }
+            closeModal('authModal');
+            var role = (r.data.user && r.data.user.user_metadata && r.data.user.user_metadata.role) || 'student';
+            if(role === 'admin') loadAdmin(); else loadStudent();
+        });
+    });
+
+    // AUTH - REGISTER
+    document.getElementById('registerForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!sb){ toast('System loading, please wait...', 'error'); return; }
+        var fd = new FormData(this);
+        var btn = document.getElementById('regBtn');
+        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Creating...';
+        sb.auth.signUp({ email: fd.get('email'), password: fd.get('password'), options: { data: { role: fd.get('role') } } }).then(function(r){
+            btn.disabled = false; btn.textContent = 'Create Account';
+            if(r.error){ toast(r.error.message, 'error'); return; }
+            toast('Account created! Signing you in...');
+            closeModal('authModal');
+            var role = fd.get('role') || 'student';
+            if(role === 'admin') loadAdmin(); else loadStudent();
+        });
+    });
+
+    // LOGOUT
+    function doLogout(){
+        if(sb) sb.auth.signOut();
+        document.getElementById('studentDash').classList.remove('active');
+        document.getElementById('adminDash').classList.remove('active');
+        document.getElementById('landing').style.display = 'block';
+        toast('Signed out');
+    }
+    document.getElementById('studentLogout').addEventListener('click', doLogout);
+    document.getElementById('adminLogout').addEventListener('click', doLogout);
+
+    // STUDENT DASHBOARD
+    function loadStudent(){
+        document.getElementById('landing').style.display = 'none';
+        document.getElementById('adminDash').classList.remove('active');
+        document.getElementById('studentDash').classList.add('active');
+        if(!sb) return;
+        sb.auth.getUser().then(function(r){
+            if(r.data && r.data.user) document.getElementById('studentEmail').textContent = r.data.user.email;
+        });
+        sb.from('afg_enrollments').select('*').order('created_at',{ascending:false}).then(function(r){
+            var tbody = document.getElementById('sApps');
+            tbody.innerHTML = '';
+            if(r.data && r.data.length){
+                r.data.forEach(function(a){
+                    var bc = a.status==='accepted'?'badge-green':a.status==='pending'?'badge-gold':'badge-gray';
+                    tbody.innerHTML += '<tr><td>'+new Date(a.created_at).toLocaleDateString()+'</td><td>'+a.first_name+' '+a.last_name+'</td><td>'+a.province+'</td><td><span class="badge '+bc+'">'+a.status+'</span></td></tr>';
+                });
+            } else {
+                tbody.innerHTML = '<tr><td colspan="4" style="color:var(--gray)">No applications yet</td></tr>';
+            }
+        });
+        loadCurriculum();
+    }
+
+    function loadCurriculum(){
+        var mods = [
+            {n:'Digital Literacy & Internet',p:1},{n:'English for Tech',p:1},{n:'Introduction to AI Tools',p:1},{n:'Build Your First Website',p:1},
+            {n:'Prompt Engineering',p:2},{n:'Web Apps with AI',p:2},{n:'Frontend: HTML, CSS, React',p:2},{n:'Backend: Supabase',p:2},{n:'Deploy Your Apps',p:2},{n:'Capstone Project',p:2},
+            {n:'Full-Stack Development',p:3},{n:'AI Integration & Chatbots',p:3},{n:'Mobile App Development',p:3},{n:'Freelancing & Income',p:3},{n:'SaaS Product Building',p:3},{n:'Final Project',p:3}
+        ];
+        var done = 4, list = document.getElementById('currList');
+        list.innerHTML = '';
+        mods.forEach(function(m,i){
+            var s = i<done?'done':i===done?'now':'lock';
+            var ic = s==='done'?'✓':s==='now'?'→':'🔒';
+            list.innerHTML += '<div class="mod"><div class="mod-i '+s+'">'+ic+'</div><div><div class="mod-n">'+m.n+'</div><div class="mod-m">Phase '+m.p+'</div></div></div>';
+        });
+        var pct = Math.round((done/mods.length)*100);
+        document.getElementById('sBar').style.width = pct+'%';
+        document.getElementById('sProg').textContent = pct+'%';
+        document.getElementById('sPhase').textContent = done<4?'1':done<10?'2':'3';
+    }
+
+    // ADMIN DASHBOARD
+    function loadAdmin(){
+        document.getElementById('landing').style.display = 'none';
+        document.getElementById('studentDash').classList.remove('active');
+        document.getElementById('adminDash').classList.add('active');
+        if(!sb) return;
+        sb.from('afg_enrollments').select('*').order('created_at',{ascending:false}).then(function(r){
+            var tbody = document.getElementById('aApps');
+            tbody.innerHTML = '';
+            var pending=0, accepted=0, provs={};
+            if(r.data && r.data.length){
+                r.data.forEach(function(a){
+                    provs[a.province]=1;
+                    if(a.status==='pending') pending++;
+                    if(a.status==='accepted') accepted++;
+                    var bc = a.status==='accepted'?'badge-green':a.status==='pending'?'badge-gold':'badge-gray';
+                    var act = a.status==='pending' ? '<button class="btn btn-primary btn-sm" data-accept="'+a.id+'">Accept</button> <button class="btn btn-sm btn-danger" data-reject="'+a.id+'">Reject</button>' : '—';
+                    tbody.innerHTML += '<tr><td>'+new Date(a.created_at).toLocaleDateString()+'</td><td>'+a.first_name+' '+a.last_name+'</td><td>'+a.age+'</td><td>'+a.province+'</td><td>'+(a.device||'-')+'</td><td>'+(a.internet||'-')+'</td><td><span class="badge '+bc+'">'+a.status+'</span></td><td>'+act+'</td></tr>';
+                });
+                // Wire accept/reject buttons
+                tbody.querySelectorAll('[data-accept]').forEach(function(b){
+                    b.addEventListener('click', function(){ updateSt(this.dataset.accept,'accepted'); });
+                });
+                tbody.querySelectorAll('[data-reject]').forEach(function(b){
+                    b.addEventListener('click', function(){ updateSt(this.dataset.reject,'rejected'); });
+                });
+            } else {
+                tbody.innerHTML = '<tr><td colspan="8" style="color:var(--gray)">No applications yet</td></tr>';
+            }
+            document.getElementById('aTotal').textContent = r.data?r.data.length:0;
+            document.getElementById('aPending').textContent = pending;
+            document.getElementById('aAccepted').textContent = accepted;
+            document.getElementById('aProv').textContent = Object.keys(provs).length;
+        });
+        sb.from('afg_partners').select('*').order('created_at',{ascending:false}).then(function(r){
+            var tbody = document.getElementById('aPartners');
+            tbody.innerHTML = '';
+            if(r.data && r.data.length){
+                r.data.forEach(function(p){
+                    tbody.innerHTML += '<tr><td>'+new Date(p.created_at).toLocaleDateString()+'</td><td>'+p.name+'</td><td>'+p.organization+'</td><td>'+p.email+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis">'+p.message+'</td></tr>';
+                });
+            } else {
+                tbody.innerHTML = '<tr><td colspan="5" style="color:var(--gray)">No inquiries yet</td></tr>';
+            }
+        });
+    }
+
+    function updateSt(id, status){
+        sb.from('afg_enrollments').update({status:status}).eq('id',id).then(function(r){
+            if(r.error){ toast('Error: '+r.error.message,'error'); return; }
+            toast('Application '+status+'!');
+            loadAdmin();
+        });
+    }
+
+    // CSV EXPORT
+    document.getElementById('exportBtn').addEventListener('click', function(){
+        if(!sb) return;
+        sb.from('afg_enrollments').select('*').order('created_at',{ascending:false}).then(function(r){
+            if(!r.data||!r.data.length){ toast('No data','error'); return; }
+            var h = Object.keys(r.data[0]);
+            var csv = [h.join(',')].concat(r.data.map(function(row){ return h.map(function(k){ return '"'+String(row[k]||'').replace(/"/g,'""')+'"'; }).join(','); })).join('\n');
+            var blob = new Blob([csv],{type:'text/csv'});
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'afg_enrollments_'+new Date().toISOString().slice(0,10)+'.csv';
+            a.click();
+            toast('CSV exported! 📄');
+        });
+    });
+
+    // CHECK SESSION ON LOAD
+    if(sb){
+        sb.auth.getSession().then(function(r){
+            if(r.data && r.data.session){
+                var role = (r.data.session.user && r.data.session.user.user_metadata && r.data.session.user.user_metadata.role) || 'student';
+                if(role==='admin') loadAdmin(); else loadStudent();
+            }
+        });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+            var href = this.getAttribute('href');
+            if(href.length > 1){
+                e.preventDefault();
+                var el = document.querySelector(href);
+                if(el) el.scrollIntoView({behavior:'smooth'});
+            }
+        });
+    });
+})();
 </script>
 
 </body>
